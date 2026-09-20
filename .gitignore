@@ -1,0 +1,33 @@
+# Ignore all source code files to enforce ZERO SOURCE CODE LEAK rule
+*.dart
+*.py
+*.js
+*.ts
+*.jsx
+*.tsx
+*.java
+*.kt
+*.swift
+*.c
+*.cpp
+*.h
+*.hpp
+*.go
+*.rs
+*.php
+*.rb
+*.sh
+*.bat
+*.ps1
+
+# Ignore build artifacts and secret files
+.env
+*.env
+node_modules/
+build/
+.dart_tool/
+.idea/
+.vscode/
+*.log
+*.zip
+*.tar.gz
