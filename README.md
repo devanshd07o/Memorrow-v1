@@ -1,7 +1,7 @@
 <div align="center">
 
   <br />
-  <img src="assets/app_icon.png" alt="Memorrow Logo" width="108" height="108" style="border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.6);" />
+  <img src="assets/app_icon.png" alt="Memorrow Logo" width="120" height="120" style="border-radius: 28px; box-shadow: 0 20px 50px rgba(0,0,0,0.8);" />
   <br />
   <br />
 
@@ -10,144 +10,229 @@
   <p><strong>The Obsidian-Dark, Local-First Productivity & Engineering OS</strong></p>
 
   <p>
-    <a href="#the-problem--overview">Overview</a> •
-    <a href="#key-architecture-highlights">Architecture</a> •
-    <a href="#deep-dive-engine">Engine Deep-Dive</a> •
-    <a href="#signature-feature-spotlight">Signature Spotlight</a> •
-    <a href="#privacy--security-philosophy">Privacy</a> •
-    <a href="#release-timeline--roadmap">Roadmap</a>
+    <a href="#-overview">Overview</a> •
+    <a href="#-agentic-ai-engine">Agentic AI</a> •
+    <a href="#-key-architecture-highlights">Architecture</a> •
+    <a href="#-system-diagrams">System Diagrams</a> •
+    <a href="#-signature-feature-spotlight">Spotlight</a> •
+    <a href="#-privacy--security">Privacy</a> •
+    <a href="#-roadmap">Roadmap</a>
   </p>
 
   <p>
-    <img src="https://img.shields.io/badge/Status-Private%20Beta%20%C2%B7%20Coming%20Soon-000000?style=for-the-badge&logo=rocket&logoColor=00F0FF&labelColor=0D0D12&color=1A1A24" alt="Status Badge" />
-    <img src="https://img.shields.io/badge/Architecture-Offline--First%20%2B%20Cloud%20Sync-000000?style=for-the-badge&logo=sqlite&logoColor=00F0FF&labelColor=0D0D12&color=1A1A24" alt="Architecture Badge" />
-    <img src="https://img.shields.io/badge/Security-Zero--Client--Secret%20PKCE-000000?style=for-the-badge&logo=letsencrypt&logoColor=00F0FF&labelColor=0D0D12&color=1A1A24" alt="Security Badge" />
+    <img src="https://img.shields.io/badge/Status-Private%20Beta%20%C2%B7%20v1.6.0-000000?style=for-the-badge&logo=rocket&logoColor=00F0FF&labelColor=0D0D12&color=1A1A24" alt="Status Badge" />
+    <img src="https://img.shields.io/badge/AI Engine-Agentic%20Tool%20Fulfillment-000000?style=for-the-badge&logo=openai&logoColor=00F0FF&labelColor=0D0D12&color=1A1A24" alt="AI Engine Badge" />
+    <img src="https://img.shields.io/badge/Storage-100%25%20Local--First%20Drift-000000?style=for-the-badge&logo=sqlite&logoColor=00F0FF&labelColor=0D0D12&color=1A1A24" alt="Storage Badge" />
+    <img src="https://img.shields.io/badge/Security-PKCE%20Zero--Secret%20OAuth-000000?style=for-the-badge&logo=letsencrypt&logoColor=00F0FF&labelColor=0D0D12&color=1A1A24" alt="Security Badge" />
   </p>
+
+  <br />
+
+  <img src="assets/hero_dashboard.png" alt="Memorrow Hero Dashboard" width="100%" style="border-radius: 16px; border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 30px 60px rgba(0,0,0,0.7);" />
+  <p><em>Figure 1: Memorrow Obsidian-Dark Command Center — Real-time DSA Progress, Focus Tracks, & Activity Heatmap.</em></p>
 
   <br />
 </div>
 
 ---
 
-## 📖 The Problem & Overview
+## 📖 Overview
 
-Modern developers and power users are overwhelmed by fragmented productivity workflows. Critical tasks, LeetCode progress, project vaults, roadmap trackers, and AI assistants live across dozens of browser tabs and SaaS subscriptions. Furthermore, traditional productivity software heavily relies on cloud APIs—introducing **latency, privacy risks, and complete breakage when offline**.
+Modern software engineers and power users face severe workflow fragmentation. DSA preparation, codebase roadmaps, system design notes, private credentials, and AI prompts are scattered across browser tabs and cloud subscriptions. Furthermore, traditional cloud SaaS tools introduce **API latency, privacy invasion, and total outage when offline**.
 
-**Memorrow** is engineered as a zero-compromise, cross-platform personal productivity OS for **Windows, macOS, Android, and iOS**. 
+**Memorrow** is engineered as a zero-compromise, cross-platform productivity OS for **Windows, macOS, Android, and iOS**.
 
-Built from the ground up on a **Local-First architecture**, Memorrow stores 100% of user data in high-performance local SQLite databases (`Drift`), providing instant sub-millisecond UI interactions and total offline autonomy. Cloud synchronization operates exclusively in the background through **Google Drive AppData**, ensuring zero vendor lock-in, zero external server tracking, and maximum user privacy.
+Built on a strict **Local-First Architecture**, Memorrow persists 100% of user state in high-performance local SQLite databases (`Drift`), delivering instant **sub-millisecond UI responsiveness**. Cloud synchronization operates invisibly in the background via **Google Drive AppData**, guaranteeing zero vendor lock-in, zero external telemetry, and absolute privacy.
+
+---
+
+## 🤖 Agentic AI Engine & Tool Capabilities
+
+Memorrow integrates **`AgentRunner`**, a autonomous multi-turn agentic framework that transforms raw user prompts into executable application actions without manual user intervention.
+
+```mermaid
+flowchart LR
+    UserPrompt["User Prompt / Slash Command"] --> Orchestrator["AI Orchestrator Engine"]
+    Orchestrator --> ParallelRace{"5-Key Parallel Race (~150ms)"}
+    ParallelRace --> WinnerKey["First Responder Wins"]
+    WinnerKey --> AgentRunner["AgentRunner Loop"]
+    
+    AgentRunner --> ToolParse{"Contains Tool Call?"}
+    ToolParse -- Yes --> ExecTool["Execute App State Mutation"]
+    ToolParse -- Plain Markdown --> AutoFulfill["Turn-1 Instant Synthetic Fulfillment"]
+    
+    ExecTool --> UIUpdate["Reactive Glassmorphic UI Update"]
+    AutoFulfill --> UIUpdate
+```
+
+### Key Agentic Capabilities & Slash Commands
+
+| Slash Command / Intent | Action Performed | Agentic Execution Flow |
+| :--- | :--- | :--- |
+| `/createnote <title>` | Creates structured, rich-text note | Generates full markdown hierarchy (overview, code snippets, practice problems, takeaways) and writes to local SQLite in < 200ms. |
+| `/appendnote <title>` | Appends content to existing note | Locates existing note by fuzzy title match and appends fresh sections without duplication. |
+| `/markdone <item_id>` | Updates roadmap progress | Identifies target DSA/Backend topic, marks item completed, and updates native Android widgets reactively. |
+| `/addidea <title>` | Saves encrypted Vault idea | Verifies Vault unlock state and persists project ideas into encrypted memory storage. |
+| `/navigate <tab>` | Switches application view | Controls main app navigation (`Home`, `Roadmap`, `Calendar`, `Notes`, `Leagues`, `Vault`, `Settings`). |
+| `/createproject` | Initializes Gold Card project | Creates complete portfolio project schema with tech stack, problem statement, and ATS keywords. |
+
+### Smart Agentic Features
+* **Turn-1 Synthetic Fulfillment**: If an LLM returns complete markdown content without explicit `<tool_call>` tags during a note creation request, `AgentRunner` automatically synthesizes the tool invocation on Turn 1—saving notes in **2 milliseconds** instead of triggering 4-turn retry loops.
+* **Atomic Mutex Lock**: Tool actions are wrapped in an atomic execution lock (`safeToolCall`), preventing duplicate note creations or state mutations during 5-key concurrent races.
+* **Context Injection**: Every prompt dynamically embeds local calendar events, active DSA targets, LeetCode streak stats, and personalized user instructions.
 
 ---
 
 ## ⚡ Key Architecture Highlights
 
-| Architectural Feature | Traditional SaaS Productivity Tools | Memorrow OS Architecture |
+| System Component | Traditional SaaS Productivity Tools | Memorrow OS Architecture |
 | :--- | :--- | :--- |
-| **Data Ownership** | Stored on centralized third-party servers | **100% Local-First** (`Drift` / SQLite + AppData sync) |
-| **Offline Functionality** | Broken or read-only | **Full Read/Write Autonomy** with instant local disk persistence |
-| **Desktop OAuth Security** | Embedded client secrets or web redirects | **Zero-Client-Secret PKCE** via local loopback server |
-| **Multi-Key AI Orchestration** | Fixed single API key bottleneck / Rate limits | **Atomic Parallel Race Load Balancer** across 50+ AI keys |
-| **Cross-Device Sync** | Prone to duplicate item resurrection | **Tombstone Hard-Purge Sync** (`vault_v2_data_` array wipe) |
-| **Mobile Integration** | Manual refresh / Passive web app | **Native Kotlin Reactive Widget Sync** for real-time state |
+| **Data Storage** | Centralized third-party cloud servers | **100% Local-First** (`Drift` / SQLite + background Drive sync) |
+| **Offline Mode** | Broken or read-only | **Full Autonomy** — sub-millisecond local disk reads & writes |
+| **AI Performance** | Single key queue / Rate limit blocks | **50+ Key Parallel Race Load Balancer** (~150ms latency) |
+| **Desktop OAuth** | Hardcoded secrets or external browsers | **Zero-Client-Secret PKCE** via local loopback server |
+| **DSA Hierarchy** | Flat lists or basic tags | **Accordion Hierarchy** (Topic → Subtopic → Problem) |
+| **Mobile Integration** | Manual pull-to-refresh | **Native Kotlin Reactive Widget Sync** |
 
 ---
 
-## 🛠️ Deep-Dive Engine & System Architecture
+## 📐 System Diagrams & Deep-Dive Architecture
 
-Memorrow follows a strict, audited **Clean Architecture Layering Protocol** across all supported desktop and mobile targets:
+### 1. Multi-Key AI Load Balancing & Failover Architecture
+
+Memorrow manages a candidate pool of **50+ API keys** across multiple frontier providers (Groq, Gemini, Cerebras, OpenRouter, SambaNova).
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User as User / Prompt
+    participant AO as AI Orchestrator
+    participant Pool as 5-Key Concurrent Fan-Out
+    participant Service as Winning Key (Groq Llama 3.3 70B)
+    participant Agent as AgentRunner Engine
+    participant DB as AppDatabase (SQLite)
+
+    User->>AO: Send Prompt ("create note on Binary Trees")
+    AO->>Pool: Spawn 5 Concurrent API Key Requests
+    Pool-->>Service: Candidate #1 Responds in 160ms (WINNER)
+    Pool-->>AO: Cancel slower candidate requests
+    AO->>Agent: Process Response Stream
+    Agent->>DB: Execute create_note Tool Call (< 2ms)
+    DB-->>User: Render Glassmorphic Note Block in UI
+```
+
+---
+
+### 2. Local-First Synchronization & Tombstone Purge Engine
 
 ```mermaid
 flowchart TD
-    subgraph Presentation Layer ["Presentation Layer (Flutter UI & State)"]
-        UI["Glassmorphic UI / Nav Rails / Overlays"]
-        RP["Riverpod Notifiers & State Handlers"]
+    subgraph Client ["Client Device (Local Disk)"]
+        UI_Event["UI Action (Add / Delete Item)"]
+        SQLite[("AppDatabase (SQLite)")]
+        LocalCache["Memory State / Riverpod"]
     end
 
-    subgraph Domain Layer ["Domain Layer (Business Logic)"]
-        UC["Use Cases & Domain Contracts"]
-        MD["Models & Immutable Entities"]
+    subgraph SyncEngine ["Background Sync Engine"]
+        TimestampCheck{"Compare Local vs Cloud Timestamp"}
+        PurgeFilter["Tombstone Hard-Purge (vault_v2_data_)"]
     end
 
-    subgraph Data Layer ["Data Layer (Local Storage & Cloud Sync)"]
-        DB[("AppDatabase (Drift / SQLite local disk)")]
-        SYNC["DriveSyncDataSource (Google Drive AppData)"]
-        AI["GroqService / AI Orchestrator"]
+    subgraph Cloud ["Google Drive AppData Container"]
+        DriveFile[("vault_v2_data_$userId.json")]
     end
 
-    UI <--> RP
-    RP <--> UC
-    UC <--> DB
-    RP --> AI
-    DB <--> SYNC
+    UI_Event -->|Instant Write < 2ms| SQLite
+    SQLite --> LocalCache
+    LocalCache --> TimestampCheck
+    TimestampCheck -- Local Newer --> PurgeFilter
+    PurgeFilter -->|Async Write| DriveFile
+    DriveFile -- Pull Updates --> TimestampCheck
 ```
 
-### Stage-by-Stage Data Flow Pipeline
+---
 
-1. **Local-First Execution Loop**: Any action (creating notes, marking roadmap targets, updating projects) writes instantly to local disk storage (`AppDatabase`). UI updates synchronously in **< 2 milliseconds**.
-2. **Background Sync Engine**: Asynchronously checks local modified timestamps against the secure Google Drive AppData container (`vault_v2_data_$userId.json`). Changes are merged cleanly without blocking the UI.
-3. **Zero-Resurrection Purge System**: Deletions perform direct array memory wipes (`removeWhere`), preventing tombstone resurrection across multi-device sync loops.
+### 3. Zero-Client-Secret PKCE Desktop OAuth Flow
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant App as Memorrow Desktop App
+    participant Server as Local Loopback Server (http://127.0.0.1:port)
+    participant Browser as System Default Browser
+    participant Google as Google Identity Server
+
+    App->>Server: Start Loopback Listener on Random Port
+    App->>Browser: Launch Auth URL with PKCE Code Challenge
+    Browser->>Google: Authenticate & Authorize Scope
+    Google->>Server: HTTP Redirect to /oauth2redirect?code=AUTH_CODE
+    Server->>App: Handshake Complete
+    App->>Google: Exchange AUTH_CODE + Code Verifier for Tokens
+    Google-->>App: Return Access Token & Refresh Token (Zero Client Secret!)
+```
 
 ---
 
 ## 🌟 Signature Feature Spotlight
 
-### 1. Multi-Key AI Load Balancer & Atomic Parallel Race
-
-Memorrow features an advanced AI Orchestrator capable of pooling and managing **50+ API keys simultaneously** across multiple frontier providers (Groq, Gemini, Cerebras).
+### 1. Multi-Key AI Orchestrator & Load Balancer Interface
 
 <div align="center">
-  <img src="assets/ai_keys_management.png" alt="Multi-Key AI Management UI" width="90%" style="border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);" />
-  <p><em>Figure 1: Multi-Key API Management Interface supporting 50+ concurrent keys with auto-eviction.</em></p>
+  <img src="assets/ai_keys_management.png" alt="Multi-Key AI Management UI" width="92%" style="border-radius: 16px; border: 1px solid rgba(255,255,255,0.12);" />
+  <p><em>Figure 2: Multi-Key API Management supporting 50+ concurrent keys with 15-second automatic rate-limit cooldown.</em></p>
 </div>
 
-* **Atomic Parallel Race**: Fires user prompts across 5 active keys concurrently. The fastest responding key (~150-250ms) wins instantly while slower requests auto-cancel.
-* **Instant 429 Cooldown Eviction**: If any single key encounters a rate limit, it receives an automatic 15-second cooldown block while the orchestrator instantly routes requests to remaining active keys.
-* **Safe Mutex Lock**: Tool executions are protected by an atomic lock wrapper, guaranteeing zero duplicate note creations or navigation triggers during parallel key races.
+* **Concurrent Key Fan-Out**: Fires prompts to 5 active candidate keys simultaneously. The fastest response (~150ms) wins, while remaining requests are safely discarded.
+* **Automatic Cooldown Eviction**: Encounters with HTTP `429 Rate Limit` automatically isolate the affected key for a 15-second cooldown period, preventing queue congestion.
 
 ---
 
-### 2. Vault & Developer Health System
-
-Organize codebases, credentials, private notes, and startup ideas inside a secure, encrypted Vault interface with real-time statistics tracking.
+### 2. Vault & Developer Health Stats
 
 <div align="center">
-  <img src="assets/vault_projects.png" alt="Developer Health & Vault Projects UI" width="90%" style="border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);" />
-  <p><em>Figure 2: Memorrow Vault & Developer Health Stats Showcase.</em></p>
+  <img src="assets/vault_projects.png" alt="Developer Health & Vault Projects UI" width="92%" style="border-radius: 16px; border: 1px solid rgba(255,255,255,0.12);" />
+  <p><em>Figure 3: Developer Health Stats & Encrypted Vault Projects Section.</em></p>
 </div>
 
-* **LeetCode & GitHub Sync**: Automatic LeetCode slug matching and streak monitoring.
-* **DSA Accordion Hierarchy**: Topic → Subtopic → Problem navigation designed specifically for technical interview preparation.
-* **Glassmorphic Aesthetic**: Obsidian-dark semi-transparent panels, micro-animations, and backdrop blur.
+* **Project Gold Cards**: Complete portfolio tracking including tech stack, problem statement, launch date, live URL, and ATS keywords.
+* **Encrypted Vault**: PIN-locked storage for private credentials, system ideas, identity details, and Forge Lab experiments.
 
 ---
 
-## 🔒 Privacy & Security Philosophy
+### 3. Obsidian Dark Calendar & Activity Heatmap
 
-* **Zero-Telemetry Policy**: Memorrow collects zero user analytics, zero telemetry data, and zero behavioral metrics.
-* **Zero-Client-Secret Desktop OAuth**: Desktop authentication (Windows/macOS) uses PKCE authorization code grant with a local loopback server (`http://127.0.0.1:<random-port>/oauth2redirect`). No client secrets are hardcoded or compiled into binaries.
-* **Isolated Cloud Container**: Cloud backups live exclusively inside your personal Google Drive `appDataFolder`—invisible to other applications and strictly isolated to your authenticated account.
+<div align="center">
+  <img src="assets/calendar_heatmap.png" alt="Obsidian Dark Calendar Heatmap" width="92%" style="border-radius: 16px; border: 1px solid rgba(255,255,255,0.12);" />
+  <p><em>Figure 4: Dark Glassmorphic Calendar & Continuous Learning Heatmap.</em></p>
+</div>
 
 ---
 
-## 🗺️ Release Timeline & Roadmap
+## 🔒 Privacy & Security
 
-- [x] **v1.0.0 — Core Architecture**: Drift/SQLite local persistence + Clean Layering setup.
-- [x] **v1.2.0 — Cloud Sync**: Background Google Drive AppData synchronization.
-- [x] **v1.4.0 — Zero-Secret Auth**: Desktop PKCE Loopback OAuth2 integration.
-- [x] **v1.6.0 — Multi-Key AI Engine**: Atomic Parallel Race & 50+ key load balancing.
-- [ ] **v1.8.0 — Native Headless Sync**: Background OS daemon for Windows & macOS.
-- [ ] **v2.0.0 — Public Release**: Multi-device public beta launch across Desktop & Mobile.
+* **Zero Telemetry**: Memorrow contains zero user tracking, zero analytics collection, and zero external tracking scripts.
+* **Isolated Drive Storage**: Backup files reside exclusively inside your Google Drive `appDataFolder`—completely hidden from third-party applications and accessible only by you.
+* **Zero Client Secret**: Desktop binaries contain zero compiled secrets or API keys.
+
+---
+
+## 🗺️ Roadmap
+
+- [x] **v1.0.0 — Core Architecture**: Drift/SQLite local persistence + Clean Layering.
+- [x] **v1.2.0 — Cloud Sync Engine**: Background Google Drive AppData sync.
+- [x] **v1.4.0 — Zero-Secret Auth**: Desktop PKCE Loopback OAuth2 authentication.
+- [x] **v1.6.0 — Multi-Key AI Engine**: AgentRunner tool fulfillment & 50+ key load balancing.
+- [ ] **v1.8.0 — Background OS Daemon**: System tray daemon for Windows & macOS.
+- [ ] **v2.0.0 — Public Beta Launch**: Cross-platform desktop & mobile release.
 
 ---
 
 ## 📄 License
 
-This repository contains public showcase documentation and product specifications for **Memorrow**. 
-
-Distributed under the **MIT License**. See `LICENSE` for more information.
+Distributed under the **MIT License**. See `LICENSE` for details.
 
 ---
 
 <div align="center">
-  <sub>Built with passion for high-performance software craftsmanship.</sub>
+  <sub>Memorrow OS — Engineered for speed, privacy, and developer productivity.</sub>
 </div>
